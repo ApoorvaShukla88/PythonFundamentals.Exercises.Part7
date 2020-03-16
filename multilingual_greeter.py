@@ -3,16 +3,26 @@ from typing import Dict
 # Populate this dictionary with at least two languages.
 # Use integers for keys and strings for values.
 # Example: Key = 1. Value = 'English'.
-lang_dict = { 1 : "Hindi", 2 : "English"}
+lang_dict = {
+    1: "Hindi\n",
+    2: "English\n",
+    3: "Spanish\n"
+}
 
 # Populate this dictionary with appropriate prompts that correspond with the ids from lang_dict.
 # Example: Key = 1. Value = 'What is your name?'.
-name_prompt_dict = { 1. : 'Apka Naam' , 2. : 'What is your name?'
+name_prompt_dict = {
+    1: 'Apka Naam\n',
+    2: 'What is your name?\n',
+    3: '¿Qué es tu nombre?\n'
 }
 
 # Populate this dictionary with appropriate prompts that correspond with the ids from lang_dict.
 # Example: Key = 1. Value = 'Hello'.
-greetings_dict = { 1. : "Hey" , 2. : "Hello"
+greetings_dict = {
+    1: "Hey\n",
+    2: "Hello\n",
+    3: "Ola\n"
 }
 
 
@@ -27,11 +37,8 @@ def print_language_options(lang_options: Dict[int, str]) -> None:
     """
 
     print("Please choose a language: ")
-    for key , value in lang_options.items():
-     #print("Please choose a language: \n ")
-     print(str(key) +": " +str(value))
-
-# remove pass statement and implement me
+    for key, value in lang_options.items():
+        print(f'{key}: {value}')
 
 
 def language_input() -> int:
@@ -41,9 +48,7 @@ def language_input() -> int:
     :return: An integer representing the language choice made by the user
     """
 
-    return int(input("Enter language choice: "))
-
-
+    return int(input())
 
 
 def language_choice_is_valid(lang_options: Dict[int, str], lang_choice: int) -> bool:
@@ -63,9 +68,6 @@ def language_choice_is_valid(lang_options: Dict[int, str], lang_choice: int) -> 
         return False
 
 
-# remove pass statement and implement me
-
-
 def get_name_input(name_prompt_options: Dict[int, str], lang_choice: int) -> str:
     """
     This method takes in a dictionary and a key. It returns the value in the dictionary that has a key corresponding to
@@ -76,7 +78,7 @@ def get_name_input(name_prompt_options: Dict[int, str], lang_choice: int) -> str
     :param lang_choice: The language the user has chosen
     :return:
     """
-    pass#return name_prompt_dict[]# remove pass statement and implement me
+    return name_prompt_options.get(lang_choice)
 
 
 def name_input(name_prompt: str) -> str:
@@ -86,7 +88,7 @@ def name_input(name_prompt: str) -> str:
     :param name_prompt: A string in the user's chosen language that asks them for their name
     :return: The user's response when asked for their name
     """
-    return input(name_prompt_dict)  # remove pass statement and implement me
+    return input(name_prompt)
 
 
 def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> None:
@@ -99,10 +101,13 @@ def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> Non
     :param lang_choice: The language the user has chosen.
     :return:
     """
-    print(input(name_input())) # remove pass statement and implement me
+    print(input(name))
+    greeting = f'{greetings_options.get(lang_choice)} {name}'
+    print(greeting)
 
 
 if __name__ == '__main__':
+
     print_language_options(lang_dict)
     chosen_lang = language_input()
     while language_choice_is_valid(lang_dict, chosen_lang) is False:
@@ -112,3 +117,4 @@ if __name__ == '__main__':
     selected_prompt = f"{get_name_input(name_prompt_dict, chosen_lang)} \n"
     chosen_name = name_input(selected_prompt)
     greet(chosen_name, greetings_dict, chosen_lang)
+
